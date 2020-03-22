@@ -21,6 +21,7 @@ import os
 import time
 
 
+
 _title = conf.get('report', 'title')
 _description = conf.get('report', 'description')
 _tester = conf.get('report', 'tester')
@@ -43,4 +44,11 @@ with open(file_path, 'wb') as f:
         tester=_tester
     )
     runner.run(suite)
+
+
+# 发送qq邮件
+file_path = os.path.join(REPORT_DIR, "report.html")
+title = conf.get("email", "mail_title")
+message = conf.get("email", "mail_message")
+SendEmail.send_qq_file_email(title=title, message=message, file_path=file_path)
 
