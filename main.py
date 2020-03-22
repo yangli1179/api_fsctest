@@ -47,7 +47,7 @@ with open(file_path, 'wb') as f:
 
 
 # 发送qq邮件
-file_path = os.path.join(REPORT_DIR, "report.html")
+file_path = SendEmail.new_file(REPORT_DIR)
 title = conf.get("email", "mail_title")
 message = conf.get("email", "mail_message")
 SendEmail.send_qq_file_email(title=title, message=message, file_path=file_path)

@@ -21,8 +21,23 @@ from email.mime.multipart import MIMEMultipart      # 发送带附件的邮件
 from common.config import conf
 import logging
 from common import logger
+from common.constant import REPORT_DIR
+import os
 
 class SendEmail(object):
+
+    # 取最新的测试报告
+    def new_file(report_dir):
+        # 列举test_dir目录下的所有文件，结果以列表形式返回。
+        lists = os.listdir(REPORT_DIR)
+        # sort按key的关键字进行排序，lambda的入参fn为lists列表的元素，获取文件的最后修改时间
+        # 最后对lists元素，按文件修改时间大小从小到大排序。
+        lists.sort(key=lambda fn: os.path.getmtime(REPORT_DIR + '/' + fn))
+        # 获取最新文件的绝对路径
+        file_path = os.path.join(REPORT_DIR, lists[-1])
+        #    L=file_path.split('\\')
+        #    file_path='\\\\'.join(L)
+        return file_path
 
     @staticmethod
     def send_qq_file_email(title, message, file_path):
@@ -71,11 +86,19 @@ if __name__ == '__main__':
     import os
     from common.constant import REPORT_DIR
 
+    # 测试获取最新报告
+    print(SendEmail.new_file(REPORT_DIR))
 
-    file_path = os.path.join(REPORT_DIR, "report.html")
+    # file_path = os.path.join(REPORT_DIR, "report.html")
+    file_path = SendEmail.new_file(REPORT_DIR)
+
+    # 测试发送邮件
     title = conf.get("email", "mail_title")
     message = conf.get("email", "mail_message")
     SendEmail.send_qq_file_email(title=title, message=message, file_path=file_path)
+
+
+
 
 
 
