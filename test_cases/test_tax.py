@@ -37,13 +37,13 @@ class LoginTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        logging.info("==================== 准备开始执行添加发票信息接口测试 ====================")
+        logging.info("==================== 准备开始执行编辑接口测试 ====================")
         cls.request = HTTPRequest()
         cls.db = ExecuteMsql()
 
     @classmethod
     def tearDownClass(cls):
-        logging.info("==================== 添加发票信息测试执行完毕 ====================")
+        logging.info("==================== 编辑报税测试执行完毕 ====================")
         cls.request.close()
 
 
