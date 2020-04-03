@@ -30,7 +30,7 @@ def get_token(phone, pwd):
     response = request.request(method=method, url=url, data=data)
     res = response.json()
     token = res['data']['access_token']
-    # print("token是：{}".format(token))
+    print("token是：{}".format(token))
     return token
 
 

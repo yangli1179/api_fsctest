@@ -30,14 +30,14 @@ file_name = conf.get("excel", "file_name")
 
 
 @ddt
-class LoginTestCase(unittest.TestCase):
+class TaxTestCase(unittest.TestCase):
     # 拼接完整的excel路径，然后读取excel数据
     wb = ReadExcel(os.path.join(DATA_DIR, "test_cases.xlsx"), "tax")
     cases = wb.read_line_data()
 
     @classmethod
     def setUpClass(cls):
-        logging.info("==================== 准备开始执行编辑接口测试 ====================")
+        logging.info("==================== 准备开始执行编辑报税接口测试 ====================")
         cls.request = HTTPRequest()
         cls.db = ExecuteMsql()
 

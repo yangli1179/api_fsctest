@@ -32,7 +32,7 @@ file_name = conf.get("excel", "file_name")
 
 
 @ddt
-class LoginTestCase(unittest.TestCase):
+class PurchaserSettingsetTestCase(unittest.TestCase):
     # 拼接完整的excel路径，然后读取excel数据
     wb = ReadExcel(os.path.join(DATA_DIR, "test_cases.xlsx"), "purchaser-setting")
     cases = wb.read_line_data()
